@@ -65,9 +65,24 @@
     <label for="code">Secret Code (Sent in Invitation)</label>
     <input type="text" name="code" id="code" required placeholder="Enter your secret code">
     
+    <!-- Number of Attendees -->
+    <label for="num-attendees">How many people are attending?</label>
+    <select name="num-attendees" id="num-attendees" required onchange="toggleNameFields()">
+      <option value="1">1 - Just Me</option>
+      <option value="2">2 - Me + Partner</option>
+    </select>
+
     <!-- Name(s) -->
-    <label for="name">Your Full Name(s)</label>
-    <input type="text" name="name" id="name" required placeholder="Your Name (or Both Names if Couple)" oninput="checkNames()">
+    <div id="name-container">
+      <label for="name1">Your Full Name</label>
+      <input type="text" name="name1" id="name1" required placeholder="Your Name">
+      
+      <!-- Second Name (Only if attending as a couple) -->
+      <div id="name2-container" style="display: none;">
+        <label for="name2">Partner's Full Name</label>
+        <input type="text" name="name2" id="name2" placeholder="Your Partner's Name">
+      </div>
+    </div>
     
     <!-- Attending or Not -->
     <label for="attending">Will you be attending?</label>
@@ -75,25 +90,6 @@
       <option value="yes">Yes, I will be there!</option>
       <option value="no">No, I can't make it.</option>
     </select>
-
-    <!-- Couple Option -->
-    <label for="couple">Attending as a couple?</label>
-    <input type="checkbox" id="couple" name="couple" onchange="toggleCoupleFields()">
-    
-    <!-- +1 Selection (Only if not attending as a couple) -->
-    <div id="plusone-container" style="display: none;">
-      <label for="plusone">Are you bringing a +1?</label>
-      <select name="plusone" id="plusone" onchange="togglePlusOneName()">
-        <option value="no">No, just me</option>
-        <option value="yes">Yes, I am bringing someone</option>
-      </select>
-      
-      <!-- +1 Name (Only if bringing a guest) -->
-      <div id="plusone-name-container" style="display: none;">
-        <label for="plusone_name">+1's Full Name</label>
-        <input type="text" name="plusone_name" id="plusone_name" placeholder="Your guest's full name">
-      </div>
-    </div>
 
     <!-- Dietary Restrictions -->
     <label for="diet">Any Dietary Restrictions?</label>
@@ -116,42 +112,20 @@
 </section>
 
 <script>
-  // Toggle visibility of the +1 field based on couple checkbox
-  function toggleCoupleFields() {
-    const coupleCheckbox = document.getElementById('couple');
-    const plusOneContainer = document.getElementById('plusone-container');
+  // Function to show/hide name fields based on number of attendees
+  function toggleNameFields() {
+    const numAttendees = document.getElementById('num-attendees').value;
+    const name2Container = document.getElementById('name2-container');
     
-    if (coupleCheckbox.checked) {
-      plusOneContainer.style.display = 'none'; // Hide the +1 field if attending as a couple
+    if (numAttendees === "2") {
+      name2Container.style.display = "block"; // Show partner's name field
+      document.getElementById("name2").setAttribute("required", "true"); // Make it required
     } else {
-      plusOneContainer.style.display = 'block'; // Show the +1 field if not attending as a couple
+      name2Container.style.display = "none"; // Hide partner's name field
+      document.getElementById("name2").removeAttribute("required"); // Make it not required
     }
   }
 
-  // Ensure that the names field handles both individual and couple entries
-  function checkNames() {
-    const nameInput = document.getElementById('name').value;
-    const coupleCheckbox = document.getElementById('couple');
-    
-    if (nameInput.trim().split(' ').length > 1) {
-      coupleCheckbox.checked = true;  // Automatically mark as couple if more than 1 name is entered
-      toggleCoupleFields();  // Update the form display
-    }
-  }
-
-  // Function to show/hide +1 name field
-  function togglePlusOneName() {
-    let plusOneSelect = document.getElementById("plusone");
-    let plusOneNameContainer = document.getElementById("plusone-name-container");
-
-    if (plusOneSelect.value === "yes") {
-      plusOneNameContainer.style.display = "block";
-      document.getElementById("plusone_name").setAttribute("required", "true");
-    } else {
-      plusOneNameContainer.style.display = "none";
-      document.getElementById("plusone_name").removeAttribute("required");
-    }
-  }
  document.addEventListener("DOMContentLoaded", function() {
     // Allowed Secret Codes
     const secretCodes = ["Love2025", "YujiRosannaWedding", "SecretGuest2025"];
@@ -171,20 +145,6 @@
                 console.log("✅ Valid secret code. Form will submit.");
             }
         });
-    }
-
-    // Function to show/hide +1 name field
-    function togglePlusOneName() {
-        let plusOneSelect = document.getElementById("plusone");
-        let plusOneNameContainer = document.getElementById("plusone-name-container");
-
-        if (plusOneSelect.value === "yes") {
-            plusOneNameContainer.style.display = "block";
-            document.getElementById("plusone_name").setAttribute("required", "true");
-        } else {
-            plusOneNameContainer.style.display = "none";
-            document.getElementById("plusone_name").removeAttribute("required");
-        }
     }
 
     // Expose the function to the global scope so that the inline event works
