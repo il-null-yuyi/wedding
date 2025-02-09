@@ -58,8 +58,8 @@
 <section id="rsvp" class="section">
     <h2>RSVP</h2>
     <p>Please enter your RSVP details below. Only invited guests can RSVP.</p>
-    
-   <form id="rsvp-form" action="https://formsubmit.co/rosanna@hovrell.com" method="POST" onsubmit="return checkSecretCode()">
+
+    <form id="rsvp-form" action="https://formsubmit.co/YOUR-EMAIL@gmail.com" method="POST">
         
         <!-- Secret Code -->
         <label for="code">Secret Code (Sent in Invitation)</label>
@@ -113,34 +113,20 @@
     // Allowed Secret Codes
     const secretCodes = ["Love2025", "YujiRosannaWedding", "SecretGuest2025"]; // Add more if needed
 
-    function checkSecretCode() {
+    document.getElementById("rsvp-form").addEventListener("submit", function(event) {
         let codeInput = document.getElementById("code").value;
         
+        // Check if the secret code is valid
         if (!secretCodes.includes(codeInput)) {
             alert("Invalid secret code. Please enter the code from your invitation.");
-            return false; // Stop form submission
+            event.preventDefault(); // STOP the form submission
         }
-        return true; // Allow form submission
-    }
+    });
 
     function togglePlusOneName() {
         let plusOneSelect = document.getElementById("plusone");
         let plusOneNameContainer = document.getElementById("plusone-name-container");
         
-        if (plusOneSelect.value === "yes") {
-            plusOneNameContainer.style.display = "block";
-            document.getElementById("plusone_name").setAttribute("required", "true");
-        } else {
-            plusOneNameContainer.style.display = "none";
-            document.getElementById("plusone_name").removeAttribute("required");
-        }
-    }
-</script>
-
-<script>
-    function togglePlusOneName() {
-        let plusOneSelect = document.getElementById("plusone");
-        let plusOneNameContainer = document.getElementById("plusone-name-container");
         if (plusOneSelect.value === "yes") {
             plusOneNameContainer.style.display = "block";
             document.getElementById("plusone_name").setAttribute("required", "true");
