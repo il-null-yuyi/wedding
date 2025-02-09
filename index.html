@@ -64,69 +64,68 @@
             <!-- Secret Code -->
             <label for="code">Secret Code (Sent in Invitation)</label>
             <input type="text" name="code" id="code" required placeholder="Enter your secret code">
-            
-            <!-- Name -->
-            <label for="name1">Your Full Name</label>
-            <input type="text" name="name1" id="name1" required placeholder="Your Name">
-
-            <!-- Email (for confirmation) -->
-            <label for="email">Your Email</label>
-            <input type="email" name="email" id="email" required placeholder="Enter your email">
-            
-            <!-- Attending or Not -->
-            <label for="attending">Will you be attending?</label>
-            <select name="attending" id="attending" required>
-                <option value="yes">Yes, I will be there!</option>
-                <option value="no">No, I can't make it.</option>
-            </select>
 
             <!-- Number of Attendees -->
             <label for="num-attendees">How many people are attending?</label>
-            <select name="num-attendees" id="num-attendees" required onchange="toggleNameFields()">
+            <select name="num-attendees" id="num-attendees" required onchange="toggleFields()">
                 <option value="1">1 - Just Me</option>
                 <option value="2">2 - Me + Partner</option>
             </select>
 
-            <!-- Name Fields (for 1 or 2 people) -->
-            <div id="name-container">
-                <label for="name1">Your Full Name</label>
-                <input type="text" name="name1" id="name1" required placeholder="Your Name">
-                <!-- Second Name (Only if attending as a couple) -->
-                <div id="name2-container" style="display: none;">
-                    <label for="name2">Partner's Full Name</label>
-                    <input type="text" name="name2" id="name2" placeholder="Your Partner's Name">
+            <!-- Your Information Section -->
+            <div id="your-info">
+                <h3>Your Information</h3>
+                <div class="input-group">
+                    <label for="name1">Your Full Name</label>
+                    <input type="text" name="name1" id="name1" required placeholder="Your Name">
+                </div>
+                <div class="input-group">
+                    <label for="email">Your Email</label>
+                    <input type="email" name="email" id="email" required placeholder="Enter your email">
+                </div>
+                <div class="input-group">
+                    <label for="attending">Will you be attending?</label>
+                    <select name="attending" id="attending" required>
+                        <option value="yes">Yes, I will be there!</option>
+                        <option value="no">No, I can't make it.</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="diet1">Any Dietary Restrictions?</label>
+                    <input type="text" name="diet1" id="diet1" placeholder="E.g. vegetarian, nut allergy">
+                </div>
+                <div class="input-group">
+                    <label for="alcohol1">Will you be drinking alcohol?</label>
+                    <select name="alcohol1" id="alcohol1">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="song">Song Request for the Party</label>
+                    <input type="text" name="song" id="song" placeholder="Suggest a song!">
                 </div>
             </div>
 
-            <!-- Dietary Restrictions -->
-            <label for="diet1">Any Dietary Restrictions (Yourself)?</label>
-            <input type="text" name="diet1" id="diet1" placeholder="E.g. vegetarian, nut allergy">
-            
-            <!-- Dietary Restrictions (For Partner if applicable) -->
-            <div id="diet2-container" style="display: none;">
-                <label for="diet2">Any Dietary Restrictions (Partner)?</label>
-                <input type="text" name="diet2" id="diet2" placeholder="E.g. vegetarian, nut allergy">
+            <!-- Partner's Information Section (only appears if 2 people attending) -->
+            <div id="partner-info" style="display:none;">
+                <h3>Partner's Information</h3>
+                <div class="input-group">
+                    <label for="name2">Partner's Full Name</label>
+                    <input type="text" name="name2" id="name2" placeholder="Partner's Name">
+                </div>
+                <div class="input-group">
+                    <label for="diet2">Any Dietary Restrictions (Partner)?</label>
+                    <input type="text" name="diet2" id="diet2" placeholder="E.g. vegetarian, nut allergy">
+                </div>
+                <div class="input-group">
+                    <label for="alcohol2">Will your Partner be drinking alcohol?</label>
+                    <select name="alcohol2" id="alcohol2">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
             </div>
-
-            <!-- Alcohol Preference -->
-            <label for="alcohol1">Will you be drinking alcohol (Yourself)?</label>
-            <select name="alcohol1" id="alcohol1">
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-            </select>
-
-            <!-- Alcohol Preference (For Partner if applicable) -->
-            <div id="alcohol2-container" style="display: none;">
-                <label for="alcohol2">Will your Partner be drinking alcohol?</label>
-                <select name="alcohol2" id="alcohol2">
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </div>
-
-            <!-- Song Request -->
-            <label for="song">Song Request for the Party</label>
-            <input type="text" name="song" id="song" placeholder="Suggest a song!">
 
             <!-- Hidden Fields for FormSubmit -->
             <input type="hidden" name="_next" value="https://rosanna-and-yuji.github.io/wedding/thanks.html">
@@ -139,32 +138,47 @@
     </section>
 
     <script>
-        // Function to show/hide name, dietary, and alcohol preference fields based on the number of attendees
-        function toggleNameFields() {
+        // Allowed Secret Codes
+        const secretCodes = ["Love2025", "YujiRosannaWedding", "SecretGuest2025"];
+
+        // Function to show/hide partner's fields based on the number of attendees
+        function toggleFields() {
             const numAttendees = document.getElementById('num-attendees').value;
-            const name2Container = document.getElementById('name2-container');
-            const diet2Container = document.getElementById('diet2-container');
-            const alcohol2Container = document.getElementById('alcohol2-container');
+            const partnerInfo = document.getElementById('partner-info');
+            const partnerFields = document.querySelectorAll('#partner-info .input-group');
+            const attendingSelect = document.getElementById('attending');
             
             if (numAttendees === "2") {
-                name2Container.style.display = "block"; // Show partner's name field
-                diet2Container.style.display = "block"; // Show partner's dietary restriction field
-                alcohol2Container.style.display = "block"; // Show partner's alcohol preference field
-                document.getElementById("name2").setAttribute("required", "true"); // Make it required
-                document.getElementById("diet2").setAttribute("required", "true"); // Make it required
-                document.getElementById("alcohol2").setAttribute("required", "true"); // Make it required
+                partnerInfo.style.display = "block"; // Show partner's information section
+                attendingSelect.setAttribute("required", "true"); // Ensure "attending" is required for the second person
+                partnerFields.forEach(field => field.style.display = "block"); // Show partner's fields
             } else {
-                name2Container.style.display = "none"; // Hide partner's name field
-                diet2Container.style.display = "none"; // Hide partner's dietary restriction field
-                alcohol2Container.style.display = "none"; // Hide partner's alcohol preference field
-                document.getElementById("name2").removeAttribute("required"); // Remove required
-                document.getElementById("diet2").removeAttribute("required"); // Remove required
-                document.getElementById("alcohol2").removeAttribute("required"); // Remove required
+                partnerInfo.style.display = "none"; // Hide partner's information section
+                attendingSelect.removeAttribute("required"); // Make "attending" optional for second person
+                partnerFields.forEach(field => field.style.display = "none"); // Hide partner's fields
             }
         }
 
-        // Trigger the function to manage the visibility of fields
-        document.addEventListener("DOMContentLoaded", toggleNameFields);
+        // Validate the secret code on form submit
+        document.addEventListener("DOMContentLoaded", function() {
+            const form = document.getElementById("rsvp-form");
+
+            if (form) {
+                form.addEventListener("submit", function(event) {
+                    let codeInput = document.getElementById("code").value;
+
+                    if (!secretCodes.includes(codeInput)) {
+                        alert("Invalid secret code. Please enter the code from your invitation.");
+                        event.preventDefault(); // Stop the form submission
+                    } else {
+                        console.log("✅ Valid secret code. Form will submit.");
+                    }
+                });
+            }
+
+            // Trigger function to hide/show fields when the page loads
+            toggleFields();
+        });
     </script>
 
     <section id="photos" class="section">
