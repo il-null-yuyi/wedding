@@ -59,11 +59,11 @@
     <h2>RSVP</h2>
     <p>Please enter your RSVP details below. Only invited guests can RSVP.</p>
     
-    <form action="https://formsubmit.co/rosanna@hovrell.com" method="POST">
+   <form id="rsvp-form" action="https://formsubmit.co/rosanna@hovrell.com" method="POST" onsubmit="return checkSecretCode()">
         
         <!-- Secret Code -->
         <label for="code">Secret Code (Sent in Invitation)</label>
-        <input type="text" name="code" id="code" required placeholder="0000">
+        <input type="text" name="code" id="code" required placeholder="Enter your secret code">
         
         <!-- Name -->
         <label for="name">Your Full Name</label>
@@ -108,6 +108,34 @@
         <button type="submit">Submit RSVP</button>
     </form>
 </section>
+
+<script>
+    // Allowed Secret Codes
+    const secretCodes = ["Love2025", "YujiRosannaWedding", "SecretGuest2025"]; // Add more if needed
+
+    function checkSecretCode() {
+        let codeInput = document.getElementById("code").value;
+        
+        if (!secretCodes.includes(codeInput)) {
+            alert("Invalid secret code. Please enter the code from your invitation.");
+            return false; // Stop form submission
+        }
+        return true; // Allow form submission
+    }
+
+    function togglePlusOneName() {
+        let plusOneSelect = document.getElementById("plusone");
+        let plusOneNameContainer = document.getElementById("plusone-name-container");
+        
+        if (plusOneSelect.value === "yes") {
+            plusOneNameContainer.style.display = "block";
+            document.getElementById("plusone_name").setAttribute("required", "true");
+        } else {
+            plusOneNameContainer.style.display = "none";
+            document.getElementById("plusone_name").removeAttribute("required");
+        }
+    }
+</script>
 
 <script>
     function togglePlusOneName() {
