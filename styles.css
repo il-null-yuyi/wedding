@@ -1,26 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Raleway:wght@600&family=Playfair+Display:wght@700&display=swap');
+
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Raleway', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #fff8f2;
-    color: #5a3e36;
+    background-color: #FBE8D3; /* Soft beige background */
+    color: #5A3E36;
     text-align: center;
 }
 
+/* Header - Fancy Title */
 .hero {
-    background: url('images/flower-header.jpg') no-repeat center center/cover;
+    background: url('images/flower-header.png') no-repeat center center/cover;
     color: white;
-    padding: 100px 20px;
+    padding: 120px 20px;
 }
 
-.hero-content h1 {
-    font-size: 50px;
+.hero h1 {
+    font-size: 60px;
     font-family: 'Dancing Script', cursive;
+    color: #B83B5E; /* Deep pink */
 }
 
+.hero p {
+    font-size: 22px;
+}
+
+/* Navigation Bar */
 nav {
-    background-color: #e8d8c4;
-    padding: 10px;
+    background-color: #E8D8C4;
+    padding: 12px;
 }
 
 nav ul {
@@ -35,24 +44,32 @@ nav ul li {
 
 nav ul li a {
     text-decoration: none;
-    color: #5a3e36;
+    color: #5A3E36;
     font-size: 18px;
+    font-family: 'Playfair Display', serif;
 }
 
+/* Section Styling */
 .section {
     padding: 50px 20px;
+    background-color: #FFD3B6; /* Soft warm peach */
+    border-radius: 20px;
+    margin: 30px auto;
+    width: 80%;
 }
 
+/* Photo Placeholders */
 .photo-placeholder {
     width: 100%;
     height: 200px;
-    background: #d8b6a4;
+    background: #D8B6A4;
     text-align: center;
     line-height: 200px;
     color: white;
     font-size: 20px;
 }
 
+/* RSVP Form */
 form {
     display: flex;
     flex-direction: column;
@@ -65,14 +82,15 @@ form label, form input, form select, form button {
 }
 
 button {
-    background-color: #c06c84;
+    background-color: #C06C84;
     color: white;
     border: none;
-    padding: 10px;
+    padding: 12px;
     cursor: pointer;
 }
 
+/* Footer */
 footer {
-    background-color: #e8d8c4;
+    background-color: #E8D8C4;
     padding: 20px;
 }
