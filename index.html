@@ -65,13 +65,9 @@
     <label for="code">Secret Code (Sent in Invitation)</label>
     <input type="text" name="code" id="code" required placeholder="Enter your secret code">
     
-    <!-- Name -->
-    <label for="name">Your Full Name</label>
-    <input type="text" name="name" id="name" required placeholder="Your Name">
-
-    <!-- Email (for confirmation) -->
-    <label for="email">Your Email</label>
-    <input type="email" name="email" id="email" required placeholder="Enter your email">
+    <!-- Name(s) -->
+    <label for="name">Your Full Name(s)</label>
+    <input type="text" name="name" id="name" required placeholder="Your Name (or Both Names if Couple)" oninput="checkNames()">
     
     <!-- Attending or Not -->
     <label for="attending">Will you be attending?</label>
@@ -80,17 +76,23 @@
       <option value="no">No, I can't make it.</option>
     </select>
 
-    <!-- +1 Selection -->
-    <label for="plusone">Are you bringing a +1?</label>
-    <select name="plusone" id="plusone" required onchange="togglePlusOneName()">
-      <option value="no">No, just me</option>
-      <option value="yes">Yes, I am bringing someone</option>
-    </select>
-
-    <!-- +1 Name (Only if bringing a guest) -->
-    <div id="plusone-name-container" style="display: none;">
-      <label for="plusone_name">+1's Full Name</label>
-      <input type="text" name="plusone_name" id="plusone_name" placeholder="Your guest's full name">
+    <!-- Couple Option -->
+    <label for="couple">Attending as a couple?</label>
+    <input type="checkbox" id="couple" name="couple" onchange="toggleCoupleFields()">
+    
+    <!-- +1 Selection (Only if not attending as a couple) -->
+    <div id="plusone-container" style="display: none;">
+      <label for="plusone">Are you bringing a +1?</label>
+      <select name="plusone" id="plusone" onchange="togglePlusOneName()">
+        <option value="no">No, just me</option>
+        <option value="yes">Yes, I am bringing someone</option>
+      </select>
+      
+      <!-- +1 Name (Only if bringing a guest) -->
+      <div id="plusone-name-container" style="display: none;">
+        <label for="plusone_name">+1's Full Name</label>
+        <input type="text" name="plusone_name" id="plusone_name" placeholder="Your guest's full name">
+      </div>
     </div>
 
     <!-- Dietary Restrictions -->
@@ -108,20 +110,48 @@
     <label for="song">Song Request for the Party</label>
     <input type="text" name="song" id="song" placeholder="Suggest a song!">
 
-    <!-- Hidden Fields for FormSubmit -->
-    <!-- Redirect to a custom thank-you page after submission -->
-    <input type="hidden" name="_next" value="https://rosanna-and-yuji.github.io/wedding/thanks.html">
-    <!-- This message will be sent as a confirmation email to the submitter (using the email field above) -->
-    <input type="hidden" name="_autoresponse" value="Thank you for your RSVP! We have received your submission.">
-    <!-- Optionally, you can customize the email subject -->
-    <input type="hidden" name="_subject" value="RSVP Confirmation">
-
     <!-- Submit Button -->
     <button type="submit">Submit RSVP</button>
   </form>
 </section>
 
 <script>
+  // Toggle visibility of the +1 field based on couple checkbox
+  function toggleCoupleFields() {
+    const coupleCheckbox = document.getElementById('couple');
+    const plusOneContainer = document.getElementById('plusone-container');
+    
+    if (coupleCheckbox.checked) {
+      plusOneContainer.style.display = 'none'; // Hide the +1 field if attending as a couple
+    } else {
+      plusOneContainer.style.display = 'block'; // Show the +1 field if not attending as a couple
+    }
+  }
+
+  // Ensure that the names field handles both individual and couple entries
+  function checkNames() {
+    const nameInput = document.getElementById('name').value;
+    const coupleCheckbox = document.getElementById('couple');
+    
+    if (nameInput.trim().split(' ').length > 1) {
+      coupleCheckbox.checked = true;  // Automatically mark as couple if more than 1 name is entered
+      toggleCoupleFields();  // Update the form display
+    }
+  }
+
+  // Function to show/hide +1 name field
+  function togglePlusOneName() {
+    let plusOneSelect = document.getElementById("plusone");
+    let plusOneNameContainer = document.getElementById("plusone-name-container");
+
+    if (plusOneSelect.value === "yes") {
+      plusOneNameContainer.style.display = "block";
+      document.getElementById("plusone_name").setAttribute("required", "true");
+    } else {
+      plusOneNameContainer.style.display = "none";
+      document.getElementById("plusone_name").removeAttribute("required");
+    }
+  }
  document.addEventListener("DOMContentLoaded", function() {
     // Allowed Secret Codes
     const secretCodes = ["Love2025", "YujiRosannaWedding", "SecretGuest2025"];
