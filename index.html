@@ -171,16 +171,6 @@
         }
     }
 
-             // Check if the secret code is valid
-            if (!secretCodes.includes(codeInput)) {
-                alert("Invalid secret code. Please enter the code from your invitation.");
-                event.preventDefault(); // Stop the form submission
-            } else {
-                console.log("✅ Valid secret code. Form will submit."); // Debugging
-            }
-        });
-    }
-
     // Validate the secret code on form submit
     document.addEventListener("DOMContentLoaded", function() {
         const form = document.getElementById("rsvp-form");
