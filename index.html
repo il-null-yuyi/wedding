@@ -56,57 +56,69 @@
     </section>
 
 <section id="rsvp" class="section">
-    <h2>RSVP</h2>
-    <p>Please enter your RSVP details below. Only invited guests can RSVP.</p>
+  <h2>RSVP</h2>
+  <p>Please enter your RSVP details below. Only invited guests can RSVP.</p>
 
-    <form id="rsvp-form" action="https://formsubmit.co/rosanna@hovrell.com" method="POST">
-        
-        <!-- Secret Code -->
-        <label for="code">Secret Code (Sent in Invitation)</label>
-        <input type="text" name="code" id="code" required placeholder="Enter your secret code">
-        
-        <!-- Name -->
-        <label for="name">Your Full Name</label>
-        <input type="text" name="name" id="name" required placeholder="Your Name">
-        
-        <!-- Attending or Not -->
-        <label for="attending">Will you be attending?</label>
-        <select name="attending" id="attending" required>
-            <option value="yes">Yes, I will be there!</option>
-            <option value="no">No, I can't make it.</option>
-        </select>
+  <form id="rsvp-form" action="https://formsubmit.co/rosanna@hovrell.com" method="POST">
+    
+    <!-- Secret Code -->
+    <label for="code">Secret Code (Sent in Invitation)</label>
+    <input type="text" name="code" id="code" required placeholder="Enter your secret code">
+    
+    <!-- Name -->
+    <label for="name">Your Full Name</label>
+    <input type="text" name="name" id="name" required placeholder="Your Name">
 
-        <!-- +1 Selection -->
-        <label for="plusone">Are you bringing a +1?</label>
-        <select name="plusone" id="plusone" required onchange="togglePlusOneName()">
-            <option value="no">No, just me</option>
-            <option value="yes">Yes, I am bringing someone</option>
-        </select>
+    <!-- Email (for confirmation) -->
+    <label for="email">Your Email</label>
+    <input type="email" name="email" id="email" required placeholder="Enter your email">
+    
+    <!-- Attending or Not -->
+    <label for="attending">Will you be attending?</label>
+    <select name="attending" id="attending" required>
+      <option value="yes">Yes, I will be there!</option>
+      <option value="no">No, I can't make it.</option>
+    </select>
 
-        <!-- +1 Name (Only if bringing a guest) -->
-        <div id="plusone-name-container" style="display: none;">
-            <label for="plusone_name">+1's Full Name</label>
-            <input type="text" name="plusone_name" id="plusone_name" placeholder="Your guest's full name">
-        </div>
+    <!-- +1 Selection -->
+    <label for="plusone">Are you bringing a +1?</label>
+    <select name="plusone" id="plusone" required onchange="togglePlusOneName()">
+      <option value="no">No, just me</option>
+      <option value="yes">Yes, I am bringing someone</option>
+    </select>
 
-        <!-- Dietary Restrictions -->
-        <label for="diet">Any Dietary Restrictions?</label>
-        <input type="text" name="diet" id="diet" placeholder="E.g. vegetarian, nut allergy">
+    <!-- +1 Name (Only if bringing a guest) -->
+    <div id="plusone-name-container" style="display: none;">
+      <label for="plusone_name">+1's Full Name</label>
+      <input type="text" name="plusone_name" id="plusone_name" placeholder="Your guest's full name">
+    </div>
 
-        <!-- Alcohol Preference -->
-        <label for="alcohol">Will you be drinking alcohol?</label>
-        <select name="alcohol" id="alcohol">
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-        </select>
+    <!-- Dietary Restrictions -->
+    <label for="diet">Any Dietary Restrictions?</label>
+    <input type="text" name="diet" id="diet" placeholder="E.g. vegetarian, nut allergy">
 
-        <!-- Song Request -->
-        <label for="song">Song Request for the Party</label>
-        <input type="text" name="song" id="song" placeholder="Suggest a song!">
+    <!-- Alcohol Preference -->
+    <label for="alcohol">Will you be drinking alcohol?</label>
+    <select name="alcohol" id="alcohol">
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+    </select>
 
-        <!-- Submit Button -->
-        <button type="submit">Submit RSVP</button>
-    </form>
+    <!-- Song Request -->
+    <label for="song">Song Request for the Party</label>
+    <input type="text" name="song" id="song" placeholder="Suggest a song!">
+
+    <!-- Hidden Fields for FormSubmit -->
+    <!-- Redirect to a custom thank-you page after submission -->
+    <input type="hidden" name="_next" value="https://yourusername.github.io/yourrepository/thanks.html">
+    <!-- This message will be sent as a confirmation email to the submitter (using the email field above) -->
+    <input type="hidden" name="_autoresponse" value="Thank you for your RSVP! We have received your submission.">
+    <!-- Optionally, you can customize the email subject -->
+    <input type="hidden" name="_subject" value="RSVP Confirmation">
+
+    <!-- Submit Button -->
+    <button type="submit">Submit RSVP</button>
+  </form>
 </section>
 
 <script>
