@@ -84,10 +84,14 @@
                     <label for="diet1">Any Dietary Restrictions?</label>
                     <input type="text" name="diet1" id="diet1" placeholder="E.g. vegetarian, nut allergy">
                 </div>
-                <div class="input-group">
-                    <label for="alcohol1">Will you be drinking alcohol?</label>
-                    <input type="checkbox" name="alcohol1" id="alcohol1"> Yes, I will drink
-                </div>
+               <!-- Alcohol Preference -->
+<div class="input-group">
+    <label>Will you be drinking alcohol?</label>
+    <div>
+        <input type="checkbox" name="alcohol1_yes" id="alcohol1_yes"> Yes, I will drink alcohol
+        <input type="checkbox" name="alcohol1_no" id="alcohol1_no"> No, I will not drink alcohol
+    </div>
+</div>
 
                 <!-- If bringing a partner, gather partner's info -->
                 <div id="partner-info" style="display:none;">
@@ -102,8 +106,10 @@
                     </div>
                     <div class="input-group">
                         <label for="alcohol2">Will your partner be drinking alcohol?</label>
-                        <input type="checkbox" name="alcohol2" id="alcohol2"> Yes, they will drink
-                    </div>
+<div>
+        <input type="checkbox" name="alcohol1_yes" id="alcohol1_yes"> Yes, I will drink alcohol
+        <input type="checkbox" name="alcohol1_no" id="alcohol1_no"> No, I will not drink alcohol
+    </div>
                 </div>
 
                 <!-- Song Request -->
