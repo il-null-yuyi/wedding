@@ -1,65 +1,45 @@
-document.addEventListener("DOMContentLoaded", function () {
-    console.log("✅ DOM fully loaded and parsed."); // Debugging
+ document.addEventListener("DOMContentLoaded", function() {
+    // Allowed Secret Codes
+    const secretCodes = ["Love2025", "YujiRosannaWedding", "SecretGuest2025"];
 
-    // Get form element safely
+    // Get form element
     const form = document.getElementById("rsvp-form");
 
-    // Only continue if the form actually exists
-    if (!form) {
-        console.error("❌ RSVP form not found. Check your HTML!");
-        return; // Stop script execution if form isn't found
+    // Only run if the form exists (avoid errors on other pages)
+    if (form) {
+        form.addEventListener("submit", function(event) {
+            let codeInput = document.getElementById("code").value;
+
+            if (!secretCodes.includes(codeInput)) {
+                alert("Invalid secret code. Please enter the code from your invitation.");
+                event.preventDefault(); // Stop the form submission
+            } else {
+                console.log("✅ Valid secret code. Form will submit.");
+            }
+        });
     }
-
-    console.log("✅ RSVP form found. Adding event listener.");
-
-    // Allowed Secret Codes
-    const secretCodes = ["Love2025", "YujiRosannaWedding", "SecretGuest2025"]; // Add more if needed
-
-    // Attach submit event
-    form.addEventListener("submit", function (event) {
-        const codeInput = document.getElementById("code");
-        
-        if (!codeInput) {
-            console.error("❌ Secret code input field not found!");
-            return;
-        }
-
-        const codeValue = codeInput.value;
-
-        // Check if the secret code is valid
-        if (!secretCodes.includes(codeValue)) {
-            alert("Invalid secret code. Please enter the code from your invitation.");
-            event.preventDefault(); // Stop the form submission
-            return;
-        }
-
-        console.log("✅ Valid secret code. Form will submit.");
-    });
 
     // Function to show/hide +1 name field
     function togglePlusOneName() {
-        const plusOneSelect = document.getElementById("plusone");
-        const plusOneNameContainer = document.getElementById("plusone-name-container");
-        const plusOneNameInput = document.getElementById("plusone_name");
+        let plusOneSelect = document.getElementById("plusone");
+        let plusOneNameContainer = document.getElementById("plusone-name-container");
 
-        if (plusOneSelect && plusOneNameContainer && plusOneNameInput) {
-            if (plusOneSelect.value === "yes") {
-                plusOneNameContainer.style.display = "block";
-                plusOneNameInput.setAttribute("required", "true");
-            } else {
-                plusOneNameContainer.style.display = "none";
-                plusOneNameInput.removeAttribute("required");
-            }
+        if (plusOneSelect.value === "yes") {
+            plusOneNameContainer.style.display = "block";
+            document.getElementById("plusone_name").setAttribute("required", "true");
         } else {
-            console.error("❌ One or more +1 elements not found!");
+            plusOneNameContainer.style.display = "none";
+            document.getElementById("plusone_name").removeAttribute("required");
         }
     }
 
-    // Attach the function to change event
+    // Expose the function to the global scope so that the inline event works
+    window.togglePlusOneName = togglePlusOneName;
+
+    // You can also attach the event listener here (optional)
     const plusOneSelect = document.getElementById("plusone");
     if (plusOneSelect) {
         plusOneSelect.addEventListener("change", togglePlusOneName);
-    } else {
-        console.error("❌ Plus one select field not found!");
     }
 });
+
