@@ -63,7 +63,7 @@
         
         <!-- Secret Code -->
         <label for="code">Secret Code (Sent in Invitation)</label>
-        <input type="text" name="code" id="code" required placeholder="Enter your secret code trial">
+        <input type="text" name="code" id="code" required placeholder="Enter your secret code">
         
         <!-- Name -->
         <label for="name">Your Full Name</label>
@@ -110,26 +110,33 @@
 </section>
 
 <script>
+ document.addEventListener("DOMContentLoaded", function() {
     // Allowed Secret Codes
     const secretCodes = ["Love2025", "YujiRosannaWedding", "SecretGuest2025"]; // Add more if needed
 
-    document.getElementById("rsvp-form").addEventListener("submit", function(event) {
-        let codeInput = document.getElementById("code").value;
-        
-        // Check if the secret code is valid
-        if (!secretCodes.includes(codeInput)) {
-            alert("Invalid secret code. Please enter the code from your invitation.");
-            event.preventDefault(); // Stop the form submission
-        } else {
-            // ✅ Allow submission if the code is correct
-            console.log("Valid secret code. Form will submit."); // Debugging check
-        }
-    });
+    // Get form element
+    const form = document.getElementById("rsvp-form");
 
+    // Only run if the form exists (avoid errors on other pages)
+    if (form) {
+        form.addEventListener("submit", function(event) {
+            let codeInput = document.getElementById("code").value;
+
+            // Check if the secret code is valid
+            if (!secretCodes.includes(codeInput)) {
+                alert("Invalid secret code. Please enter the code from your invitation.");
+                event.preventDefault(); // Stop the form submission
+            } else {
+                console.log("✅ Valid secret code. Form will submit."); // Debugging
+            }
+        });
+    }
+
+    // Function to show/hide +1 name field
     function togglePlusOneName() {
         let plusOneSelect = document.getElementById("plusone");
         let plusOneNameContainer = document.getElementById("plusone-name-container");
-        
+
         if (plusOneSelect.value === "yes") {
             plusOneNameContainer.style.display = "block";
             document.getElementById("plusone_name").setAttribute("required", "true");
@@ -138,6 +145,13 @@
             document.getElementById("plusone_name").removeAttribute("required");
         }
     }
+
+    // Attach the function to change event
+    const plusOneSelect = document.getElementById("plusone");
+    if (plusOneSelect) {
+        plusOneSelect.addEventListener("change", togglePlusOneName);
+    }
+});
 </script>
     
     <section id="photos" class="section">
