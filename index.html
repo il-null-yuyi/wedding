@@ -143,9 +143,27 @@
 </section>
 
 <script>
+  document.addEventListener("DOMContentLoaded", function() {
     // Allowed Secret Codes
-    const secretCodes = ["Love2025", "YujiRosannaWedding", "SecretGuest2025"];
+    const secretCodes = ["Love2025", "YujiRosannaWedding", "SecretGuest2025"]; // Add more if needed
 
+    // Get form element
+    const form = document.getElementById("rsvp-form");
+
+    // Only run if the form exists (avoid errors on other pages)
+    if (form) {
+        form.addEventListener("submit", function(event) {
+            let codeInput = document.getElementById("code").value;
+
+            // Check if the secret code is valid
+            if (!secretCodes.includes(codeInput)) {
+                alert("Invalid secret code. Please enter the code from your invitation.");
+                event.preventDefault(); // Stop the form submission
+            } else {
+                console.log("✅ Valid secret code. Form will submit."); // Debugging
+            }
+        });
+    }
     // Function to toggle visibility based on the "attending" selection
     function toggleAttendance() {
         const attendingSelect = document.getElementById('attending');
