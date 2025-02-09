@@ -73,6 +73,19 @@
                 <option value="yes2">Yes, both me and my partner will be there!</option>
             </select>
 
+            
+            <!-- If not attending, only ask for Name and Email -->
+            <div id="no-attending-info" style="display:none;">
+                <div class="input-group">
+                    <label for="name1">Your Full Name</label>
+                    <input type="text" name="name1" id="name1" required placeholder="Your Name">
+                </div>
+                <div class="input-group">
+                    <label for="email">Your Email</label>
+                    <input type="email" name="email" id="email" required placeholder="Enter your email">
+                </div>
+            </div>
+
             <!-- If attending, gather additional info -->
             <div id="attending-info" style="display:none;">
                 <h3>Your Information</h3>
@@ -116,18 +129,6 @@
                 <div class="input-group">
                     <label for="song">Song Request for the Party</label>
                     <input type="text" name="song" id="song" placeholder="Suggest a song!">
-                </div>
-            </div>
-
-            <!-- If not attending, only ask for Name and Email -->
-            <div id="no-attending-info" style="display:none;">
-                <div class="input-group">
-                    <label for="name1">Your Full Name</label>
-                    <input type="text" name="name1" id="name1" required placeholder="Your Name">
-                </div>
-                <div class="input-group">
-                    <label for="email">Your Email</label>
-                    <input type="email" name="email" id="email" required placeholder="Enter your email">
                 </div>
             </div>
 
