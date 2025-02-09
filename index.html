@@ -55,57 +55,59 @@
         <p>Common guest questions answered.</p>
     </section>
 
-<section id="rsvp" class="section">
-    <h2>RSVP</h2>
-    <p>Please enter your RSVP details below. Only invited guests can RSVP.</p>
+    <section id="rsvp" class="section">
+        <h2>RSVP</h2>
+        <p>Please enter your RSVP details below. Only invited guests can RSVP.</p>
 
-    <form id="rsvp-form" action="https://formsubmit.co/rosanna@hovrell.com" method="POST">
-    
-        <!-- Secret Code -->
-        <label for="code">Secret Code (Sent in Invitation)</label>
-        <input type="text" name="code" id="code" required placeholder="Enter your secret code">
+        <form id="rsvp-form" action="https://formsubmit.co/rosanna@hovrell.com" method="POST">
+        
+            <!-- Secret Code -->
+            <label for="code">Secret Code (Sent in Invitation)</label>
+            <input type="text" name="code" id="code" required placeholder="Enter your secret code">
 
-        <!-- Attending Question -->
-        <label for="attending">Will you be attending?</label>
-        <select name="attending" id="attending" required onchange="toggleAttendance()">
-            <option value="no">No, I can't make it.</option>
-            <option value="yes1">Yes, I will be there!</option>
-            <option value="yes2">Yes, both me and my partner will be there!</option>
-        </select>
+            <!-- Number of Attendees -->
+            <label for="num-attendees">How many people are attending?</label>
+            <select name="num-attendees" id="num-attendees" required onchange="toggleFields()">
+                <option value="1">1 - Just Me</option>
+                <option value="2">2 - Me + Partner</option>
+            </select>
 
-        <!-- If not attending, only ask for Name and Email -->
-        <div id="no-attending-info" style="display:none;">
-            <div class="input-group">
-                <label for="name1">Your Full Name</label>
-                <input type="text" name="name1" id="name1" required placeholder="Your Name">
-            </div>
-            <div class="input-group">
-                <label for="email">Your Email</label>
-                <input type="email" name="email" id="email" required placeholder="Enter your email">
-            </div>
-        </div>
-
-        <!-- If attending, gather additional info -->
-        <div id="attending-info" style="display:none;">
-            <h3>Your Information</h3>
-            <div class="input-group">
-                <label for="name1">Your Full Name</label>
-                <input type="text" name="name1" id="name1" required placeholder="Your Name">
-            </div>
-            <div class="input-group">
-                <label for="diet1">Any Dietary Restrictions?</label>
-                <input type="text" name="diet1" id="diet1" placeholder="E.g. vegetarian, nut allergy">
-            </div>
-            <!-- Alcohol Preference -->
-            <div class="input-group">
-                <label>Will you be drinking alcohol?</label>
-                <div>
-                    <input type="checkbox" name="alcohol1_yes" id="alcohol1_yes"> Yes, I will drink alcohol
-                    <input type="checkbox" name="alcohol1_no" id="alcohol1_no"> No, I will not drink alcohol
+            <!-- Your Information Section -->
+            <div id="your-info">
+                <h3>Your Information</h3>
+                <div class="input-group">
+                    <label for="name1">Your Full Name</label>
+                    <input type="text" name="name1" id="name1" required placeholder="Your Name">
+                </div>
+                <div class="input-group">
+                    <label for="email">Your Email</label>
+                    <input type="email" name="email" id="email" required placeholder="Enter your email">
+                </div>
+                <div class="input-group">
+                    <label for="attending">Will you be attending?</label>
+                    <select name="attending" id="attending" required>
+                        <option value="yes">Yes, I will be there!</option>
+                        <option value="no">No, I can't make it.</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="diet1">Any Dietary Restrictions?</label>
+                    <input type="text" name="diet1" id="diet1" placeholder="E.g. vegetarian, nut allergy">
+                </div>
+                <div class="input-group">
+                    <label for="alcohol1">Will you be drinking alcohol?</label>
+                    <select name="alcohol1" id="alcohol1">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="song">Song Request for the Party</label>
+                    <input type="text" name="song" id="song" placeholder="Suggest a song!">
                 </div>
             </div>
 
-            <!-- If bringing a partner, gather partner's info -->
+            <!-- Partner's Information Section (only appears if 2 people attending) -->
             <div id="partner-info" style="display:none;">
                 <h3>Partner's Information</h3>
                 <div class="input-group">
@@ -113,102 +115,71 @@
                     <input type="text" name="name2" id="name2" placeholder="Partner's Name">
                 </div>
                 <div class="input-group">
-                    <label for="diet2">Partner's Dietary Restrictions</label>
+                    <label for="diet2">Any Dietary Restrictions (Partner)?</label>
                     <input type="text" name="diet2" id="diet2" placeholder="E.g. vegetarian, nut allergy">
                 </div>
                 <div class="input-group">
-                    <label for="alcohol2">Will your partner be drinking alcohol?</label>
-                    <div>
-                        <input type="checkbox" name="alcohol2_yes" id="alcohol2_yes"> Yes, they will drink alcohol
-                        <input type="checkbox" name="alcohol2_no" id="alcohol2_no"> No, they will not drink alcohol
-                    </div>
+                    <label for="alcohol2">Will your Partner be drinking alcohol?</label>
+                    <select name="alcohol2" id="alcohol2">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
                 </div>
             </div>
 
-            <!-- Song Request -->
-            <div class="input-group">
-                <label for="song">Song Request for the Party</label>
-                <input type="text" name="song" id="song" placeholder="Suggest a song!">
-            </div>
-        </div>
+            <!-- Hidden Fields for FormSubmit -->
+            <input type="hidden" name="_next" value="https://rosanna-and-yuji.github.io/wedding/thanks.html">
+            <input type="hidden" name="_autoresponse" value="Thank you for your RSVP! We have received your submission.">
+            <input type="hidden" name="_subject" value="RSVP Confirmation">
 
-        <!-- Hidden Fields for FormSubmit -->
-        <input type="hidden" name="_next" value="https://rosanna-and-yuji.github.io/wedding/thanks.html">
-        <input type="hidden" name="_autoresponse" value="Thank you for your RSVP! We have received your submission.">
-        <input type="hidden" name="_subject" value="RSVP Confirmation">
+            <!-- Submit Button -->
+            <button type="submit">Submit RSVP</button>
+        </form>
+    </section>
 
-        <!-- Submit Button -->
-        <button type="submit">Submit RSVP</button>
-    </form>
-</section>
+    <script>
+        // Allowed Secret Codes
+        const secretCodes = ["Love2025", "YujiRosannaWedding", "SecretGuest2025"];
 
-<script>
-    // Allowed Secret Codes
-    const secretCodes = ["Love2025", "YujiRosannaWedding", "SecretGuest2025"]; // Add more if needed
-
-    // Get form element
-    const form = document.getElementById("rsvp-form");
-
-    // Only run if the form exists (avoid errors on other pages)
-    if (form) {
-        form.addEventListener("submit", function(event) {
-            let codeInput = document.getElementById("code").value;
-
-            // Check if the secret code is valid
-            if (!secretCodes.includes(codeInput)) {
-                alert("Invalid secret code. Please enter the code from your invitation.");
-                event.preventDefault(); // Stop the form submission
+        // Function to show/hide partner's fields based on the number of attendees
+        function toggleFields() {
+            const numAttendees = document.getElementById('num-attendees').value;
+            const partnerInfo = document.getElementById('partner-info');
+            const partnerFields = document.querySelectorAll('#partner-info .input-group');
+            const attendingSelect = document.getElementById('attending');
+            
+            if (numAttendees === "2") {
+                partnerInfo.style.display = "block"; // Show partner's information section
+                attendingSelect.setAttribute("required", "true"); // Ensure "attending" is required for the second person
+                partnerFields.forEach(field => field.style.display = "block"); // Show partner's fields
             } else {
-                console.log("✅ Valid secret code. Form will submit."); // Debugging
+                partnerInfo.style.display = "none"; // Hide partner's information section
+                attendingSelect.removeAttribute("required"); // Make "attending" optional for second person
+                partnerFields.forEach(field => field.style.display = "none"); // Hide partner's fields
             }
+        }
+
+        // Validate the secret code on form submit
+        document.addEventListener("DOMContentLoaded", function() {
+            const form = document.getElementById("rsvp-form");
+
+            if (form) {
+                form.addEventListener("submit", function(event) {
+                    let codeInput = document.getElementById("code").value;
+
+                    if (!secretCodes.includes(codeInput)) {
+                        alert("Invalid secret code. Please enter the code from your invitation.");
+                        event.preventDefault(); // Stop the form submission
+                    } else {
+                        console.log("✅ Valid secret code. Form will submit.");
+                    }
+                });
+            }
+
+            // Trigger function to hide/show fields when the page loads
+            toggleFields();
         });
-    }
-    // Function to toggle visibility based on the "attending" selection
-    function toggleAttendance() {
-        const attendingSelect = document.getElementById('attending');
-        const attendingInfo = document.getElementById('attending-info');
-        const noAttendingInfo = document.getElementById('no-attending-info');
-        const partnerInfo = document.getElementById('partner-info');
-
-        // Display information based on the "attending" selection
-        if (attendingSelect.value === "no") {
-            attendingInfo.style.display = "none";
-            noAttendingInfo.style.display = "block";
-            partnerInfo.style.display = "none";
-        } else {
-            attendingInfo.style.display = "block";
-            noAttendingInfo.style.display = "none";
-
-            // If "Yes, both me and my partner will be there!" is selected
-            if (attendingSelect.value === "yes2") {
-                partnerInfo.style.display = "block";
-            } else {
-                partnerInfo.style.display = "none";
-            }
-        }
-    }
-
-    // Validate the secret code on form submit
-    document.addEventListener("DOMContentLoaded", function() {
-        const form = document.getElementById("rsvp-form");
-
-        if (form) {
-            form.addEventListener("submit", function(event) {
-                let codeInput = document.getElementById("code").value;
-
-                if (!secretCodes.includes(codeInput)) {
-                    alert("Invalid secret code. Please enter the code from your invitation.");
-                    event.preventDefault(); // Stop the form submission
-                } else {
-                    console.log("✅ Valid secret code. Form will submit.");
-                }
-            });
-        }
-
-        // Trigger function to hide/show fields when the page loads
-        toggleAttendance();
-    });
-</script>
+    </script>
 
     <section id="photos" class="section">
         <h2>Our Memories</h2>
