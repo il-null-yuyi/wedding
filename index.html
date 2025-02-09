@@ -112,7 +112,7 @@
 <script>
  document.addEventListener("DOMContentLoaded", function() {
     // Allowed Secret Codes
-    const secretCodes = ["Love2025", "YujiRosannaWedding", "SecretGuest2025"]; // Add more if needed
+    const secretCodes = ["Love2025", "YujiRosannaWedding", "SecretGuest2025"];
 
     // Get form element
     const form = document.getElementById("rsvp-form");
@@ -122,12 +122,11 @@
         form.addEventListener("submit", function(event) {
             let codeInput = document.getElementById("code").value;
 
-            // Check if the secret code is valid
             if (!secretCodes.includes(codeInput)) {
                 alert("Invalid secret code. Please enter the code from your invitation.");
                 event.preventDefault(); // Stop the form submission
             } else {
-                console.log("✅ Valid secret code. Form will submit."); // Debugging
+                console.log("✅ Valid secret code. Form will submit.");
             }
         });
     }
@@ -146,7 +145,10 @@
         }
     }
 
-    // Attach the function to change event
+    // Expose the function to the global scope so that the inline event works
+    window.togglePlusOneName = togglePlusOneName;
+
+    // You can also attach the event listener here (optional)
     const plusOneSelect = document.getElementById("plusone");
     if (plusOneSelect) {
         plusOneSelect.addEventListener("change", togglePlusOneName);
