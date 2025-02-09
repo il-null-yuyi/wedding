@@ -94,3 +94,10 @@ footer {
     background-color: #E8D8C4;
     padding: 20px;
 }
+
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-group label {
+    display: block;
