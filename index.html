@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yuji & Rosanna's Wedding</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Yuji & Rosanna</h1>
+            <p>We are getting married!</p>
+            <p class="date">Friday, August 8, 2025</p>
+            <p class="location">Backagården, Löderup</p>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#about">Our Story</a></li>
+            <li><a href="#info">Wedding Info</a></li>
+            <li><a href="#rsvp">RSVP</a></li>
+            <li><a href="#photos">Photos</a></li>
+        </ul>
+    </nav>
+
+    <section id="about" class="section">
+        <h2>About Us</h2>
+        <p>Here you can add a short story about how you met, your journey together, or fun facts about the couple.</p>
+        <div class="photo-placeholder">[Add Photo Here]</div>
+    </section>
+
+    <section id="info" class="section">
+        <h2>Wedding Information</h2>
+        <ul>
+            <li><strong>Venue:</strong> Backagården, Löderup</li>
+            <li><strong>Time:</strong> To be announced</li>
+            <li><strong>Dress Code:</strong> To be announced</li>
+            <li><strong>Gifts:</strong> To be announced</li>
+            <li><strong>Accommodation:</strong> To be announced</li>
+            <li><strong>FAQ:</strong> Common questions and answers</li>
+        </ul>
+    </section>
+
+    <section id="rsvp" class="section">
+        <h2>RSVP</h2>
+        <form id="rsvp-form">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" required>
+
+            <label for="guests">Number of Guests:</label>
+            <input type="number" id="guests" min="1" required>
+
+            <label for="diet">Dietary Restrictions:</label>
+            <input type="text" id="diet" placeholder="Allergies, vegetarian, etc.">
+
+            <label for="alcohol">Will you be drinking alcohol?</label>
+            <select id="alcohol">
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+
+            <label for="song">Song Request:</label>
+            <input type="text" id="song" placeholder="Suggest a song for the party!">
+
+            <button type="submit">Submit RSVP</button>
+        </form>
+    </section>
+
+    <section id="photos" class="section">
+        <h2>Our Memories</h2>
+        <div class="photo-gallery">
+            <div class="photo-placeholder">[Photo 1]</div>
+            <div class="photo-placeholder">[Photo 2]</div>
+            <div class="photo-placeholder">[Photo 3]</div>
+        </div>
+    </section>
+
+    <footer>
+        <p>We can't wait to celebrate with you! ❤️</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
