@@ -179,7 +179,7 @@ a:hover{
     justify-content: space-between;
 }
 .home-img{
-    background-image: url(images/background-photo.jpg);
+    background-image: url(images/self.jpg);
     background-size: cover;
     background-position: center;
 }
@@ -225,7 +225,7 @@ a:hover{
     margin: 8vh 0;
 }
 .timeline-img{
-    background-image: url(images/background-photo2.jpg);
+    background-image: url(images/friend1.jpg);
     height: 70vh;
     width: 30vw;
     background-position: center;
