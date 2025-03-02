@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RSVP - Yuji & Rosanna</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Lora&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="background">
+        <div class="content">
+            <h1 class="title">RSVP</h1>
+            <p class="message">Enter your invite code to confirm your attendance.</p>
+
+            <!-- ログインフォーム -->
+            <div id="login-form">
+                <form action="/check_login" method="POST">
+                    <input type="text" id="invite-code" name="invite_code" placeholder="Enter your invite code"
+                        required>
+                    <button class="btn" type="submit">Login</button>
+                </form>
+            </div>
+
+            <!-- 曲のリクエストフォーム（デフォルト非表示） -->
+            <div id="request-form" style="display: none;">
+                <h2>Song Request 🎶</h2>
+                <p class="message">Let us know which song you’d like to hear at our wedding!</p>
+                <form action="/submit_request" method="POST">
+                    <input type="text" id="song-name" name="song_name" placeholder="Song Name" required>
+                    <input type="text" id="artist-name" name="artist_name" placeholder="Artist Name (Optional)">
+                    <button class="btn" type="submit">Request</button>
+                </form>
+            </div>
+
+            <button class="btn back-btn" onclick="goHome()">Back</button>
+        </div>
+    </div>
+
+    <script>
+        function goHome() {
+            window.location.href = "index.html";
+        }
+    </script>
+
+</body>
+
+</html>
