@@ -1,0 +1,166 @@
+/* 背景設定 */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Lora', serif;
+    background-image: url(/images/flower2.jpg); /* 背景画像を適用 */
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+}
+
+/* メインコンテンツの配置 */
+.background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* 円柱型のコンテンツボックス */
+.content {
+    background: #fdf8ef;
+    width: 55%;
+    max-width: 750px;
+    padding: 100px 50px;
+    border-radius: 100px / 120px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* タイトル */
+.title {
+    font-family: 'Sacramento', cursive;
+    color: #8a2be2;
+    font-size: 50px;
+    margin-bottom: 15px;
+}
+
+/* ナビゲーション */
+nav {
+    margin-bottom: 25px;
+}
+
+nav a {
+    font-size: 16px;
+    text-decoration: none;
+    color: #8a2be2;
+    margin: 0 10px;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+nav a.active {
+    background-color: #d8b6ff;
+}
+
+/* ハート */
+.hearts {
+    font-size: 24px;
+    color: #b36a5e;
+    margin: 15px 0;
+}
+
+/* アドレス */
+.address {
+    font-family: 'Sacramento', cursive;
+    color: #6b4eac;
+    font-size: 30px;
+    margin-top: 15px;
+}
+
+/* RSVPボタン */
+.btn {
+    display: inline-block;
+    background: #41b6e6;
+    color: white;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 5px;
+    font-size: 20px;
+    margin-top: 25px;
+    transition: 0.3s;
+    cursor: pointer;
+    border: none;
+}
+
+.btn:hover {
+    background: #3498db;
+}
+
+/* RSVPフォーム */
+form {
+    margin: 20px 0;
+}
+
+form input {
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form button {
+    width: 50%;
+}
+
+/* メッセージ */
+.message {
+    font-size: 18px;
+    color: #8a2be2;
+    margin-top: 25px;
+}
+
+/* 戻るボタン */
+.back-btn {
+    background: #8a2be2;
+}
+
+.back-btn:hover {
+    background: #6b4eac;
+}
+
+/* モバイル対応 */
+@media (max-width: 768px) {
+    .content {
+        width: 85%;
+        padding: 50px 25px;
+        border-radius: 60px / 80px;
+    }
+
+    .title {
+        font-size: 42px;
+    }
+
+    .address {
+        font-size: 28px;
+    }
+
+    .btn {
+        font-size: 18px;
+        padding: 10px 20px;
+    }
+
+    .message {
+        font-size: 16px;
+    }
+}
+
+/* 曲リクエストフォームのスタイル */
+#request-form h2 {
+    color: #8a2be2;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+#request-form input {
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
